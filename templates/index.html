@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Главная</h1>
+<p>Последние игроки и сессии</p>
+
+<h3>Игроки</h3>
+<ul>
+  {% for p in players %}
+    <li>
+      {{ p.name }} — 
+      <a href="{% url 'player_edit' p.id %}">редактировать</a>
+    </li>
+  {% empty %}
+    <li>Нет игроков</li>
+  {% endfor %}
+</ul>
+<a class="btn btn-sm btn-primary" href="{% url 'player_create' %}">Создать игрока</a>
+
+<h3 class="mt-4">Сессии</h3>
+<ul>
+  {% for s in sessions %}
+    <li>
+      Игрок: {{ s.player.name }} — очки: {{ s.score }} — 
+      <a href="{% url 'session_view' s.id %}">просмотр</a> | 
+      <a href="{% url 'play_session' s.id %}" class="btn btn-sm btn-success">Начать игру</a>
+    </li>
+  {% empty %}
+    <li>Нет сессий</li>
+  {% endfor %}
+</ul>
+<a class="btn btn-sm btn-primary" href="{% url 'session_create' %}">Новая сессия</a>
+{% endblock %}

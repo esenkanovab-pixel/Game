@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{% if question %}Редактировать{% else %}Создать вопрос{% endif %}</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button class="btn btn-primary" type="submit">Сохранить</button>
+  <a class="btn btn-secondary" href="{% url 'questions_list' %}">Отмена</a>
+</form>
+{% endblock %}

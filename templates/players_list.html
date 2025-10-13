@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Игроки</h2>
+<a class="btn btn-success mb-2" href="{% url 'player_create' %}">Новый игрок</a>
+<table class="table">
+  <thead><tr><th>Имя</th><th>Создан</th><th>Действия</th></tr></thead>
+  <tbody>
+    {% for p in players %}
+    <tr>
+      <td>{{ p.name }}</td>
+      <td>{{ p.created_at }}</td>
+      <td>
+        <a class="btn btn-sm btn-primary" href="{% url 'player_edit' p.id %}">Редактировать</a>
+        <form action="{% url 'player_delete' p.id %}" method="post" style="display:inline">
+          {% csrf_token %}
+          <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('Удалить игрока?');">Удалить</button>
+        </form>
+      </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="3">Игроков нет</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Новая сессия</h2>
+<form method="post">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label class="form-label">Игрок</label>
+    <select class="form-select" name="player_id" required>
+      <option value="">-- выбрать --</option>
+      {% for p in players %}
+        <option value="{{ p.id }}">{{ p.name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <button class="btn btn-primary" type="submit">Создать сессию</button>
+  <a class="btn btn-secondary" href="{% url 'sessions_list' %}">Отмена</a>
+</form>
+{% endblock %}

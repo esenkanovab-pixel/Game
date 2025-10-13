@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Сессия игрока {{ session.player.name }}</h2>
+<p>Создано: {{ session.created_at }}</p>
+<p>Очки: {{ session.score }}</p>
+<a class="btn btn-primary" href="{% url 'play_session' session.id %}">Играть / Продолжить</a>
+
+<h3 class="mt-4">Ответы</h3>
+<table class="table">
+  <thead><tr><th>Вопрос</th><th>Ответ игрока</th><th>Правильно?</th></tr></thead>
+  <tbody>
+    {% for r in session.results.all %}
+    <tr>
+      <td>{{ r.question.text }}</td>
+      <td>{{ r.given_answer }}</td>
+      <td>{{ 'Да' if r.correct else 'Нет' }}</td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="3">Нет ответов</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
