@@ -1,32 +1,54 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<h1>Главная</h1>
-<p>Последние игроки и сессии</p>
+<div class="container mt-4">
 
-<h3>Игроки</h3>
-<ul>
-  {% for p in players %}
-    <li>
-      {{ p.name }} — 
-      <a href="{% url 'player_edit' p.id %}">редактировать</a>
-    </li>
-  {% empty %}
-    <li>Нет игроков</li>
-  {% endfor %}
-</ul>
-<a class="btn btn-sm btn-primary" href="{% url 'player_create' %}">Создать игрока</a>
+  <div class="jumbotron p-4 mb-4 bg-light rounded-3 shadow-sm">
+    <h1 class="display-5">Добро пожаловать в Quiz CRUD!</h1>
+    <p class="lead">Создавайте игроков, сессии и отвечайте на вопросы викторины.</p>
+    <hr class="my-4">
+    <a class="btn btn-primary btn-lg" href="{% url 'player_create' %}">Создать игрока</a>
+    <a class="btn btn-success btn-lg" href="{% url 'session_create' %}">Новая сессия</a>
+  </div>
 
-<h3 class="mt-4">Сессии</h3>
-<ul>
-  {% for s in sessions %}
-    <li>
-      Игрок: {{ s.player.name }} — очки: {{ s.score }} — 
-      <a href="{% url 'session_view' s.id %}">просмотр</a> | 
-      <a href="{% url 'play_session' s.id %}" class="btn btn-sm btn-success">Начать игру</a>
-    </li>
-  {% empty %}
-    <li>Нет сессий</li>
-  {% endfor %}
-</ul>
-<a class="btn btn-sm btn-primary" href="{% url 'session_create' %}">Новая сессия</a>
+  <div class="row">
+    <!-- Игроки -->
+    <div class="col-md-6 mb-4">
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">Игроки</div>
+        <ul class="list-group list-group-flush">
+          {% for p in players %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              {{ p.name }}
+              <a class="btn btn-sm btn-outline-light btn-primary" href="{% url 'player_edit' p.id %}">Редактировать</a>
+            </li>
+          {% empty %}
+            <li class="list-group-item">Нет игроков</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Сессии -->
+    <div class="col-md-6 mb-4">
+      <div class="card shadow-sm">
+        <div class="card-header bg-success text-white">Сессии</div>
+        <ul class="list-group list-group-flush">
+          {% for s in sessions %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Игрок: {{ s.player.name }} — очки: {{ s.score }}
+              <div>
+                <a class="btn btn-sm btn-outline-primary" href="{% url 'session_view' s.id %}">Просмотр</a>
+                <a class="btn btn-sm btn-success" href="{% url 'play_session' s.id %}">Начать игру</a>
+              </div>
+            </li>
+          {% empty %}
+            <li class="list-group-item">Нет сессий</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
 {% endblock %}
