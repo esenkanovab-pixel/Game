@@ -1,0 +1,88 @@
+/* Фон всей страницы */
+body {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+}
+
+/* Контейнер формы */
+.player-form-container {
+  background-color: #ffffff;
+  padding: 40px 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  width: 100%;
+  max-width: 450px;
+}
+
+/* Заголовок формы */
+.player-form-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+  font-weight: 600;
+}
+
+/* Поля формы */
+.player-form-container input,
+.player-form-container select,
+.player-form-container textarea {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+.player-form-container input:focus,
+.player-form-container select:focus,
+.player-form-container textarea:focus {
+  border-color: #2575fc;
+  box-shadow: 0 0 6px rgba(37, 117, 252, 0.25);
+  outline: none;
+}
+
+/* Кнопки */
+.player-form-container .btn-primary {
+  width: 48%;
+  background-color: #2575fc;
+  border: none;
+  padding: 10px 0;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.player-form-container .btn-primary:hover {
+  background-color: #1356d0;
+}
+
+.player-form-container .btn-secondary {
+  width: 48%;
+  background-color: #6c757d;
+  color: #fff;
+  border: none;
+  padding: 10px 0;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.player-form-container .btn-secondary:hover {
+  background-color: #545b62;
+}
+
+/* Кнопки рядом */
+.player-form-container .btn-group {
+  display: flex;
+  justify-content: space-between;
+}
