@@ -1,1 +1,4 @@
 body { padding-bottom: 40px; }
+.navbar .nav-link {
+    margin-right: 15px;
+}
