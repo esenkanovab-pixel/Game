@@ -46,6 +46,7 @@
       <th>Вопрос</th>
       <th>Ответ</th>
       <th>Правильно</th>
+      <th>Правильный ответ</th>
     </tr>
   </thead>
   <tbody>
@@ -53,10 +54,23 @@
       <tr class="{% if r.correct %}table-success{% else %}table-danger{% endif %}">
         <td>{{ r.question.text }}</td>
         <td>{{ r.given_answer }}</td>
-        <td>{{ r.correct|yesno:"Да,Нет" }}</td>
+        <td>
+          {% if r.correct %}
+            ✅
+          {% else %}
+            ❌
+          {% endif %}
+        </td>
+        <td>
+          {% if not r.correct %}
+            {{ r.question.correct_answer }}
+          {% else %}
+            —
+          {% endif %}
+        </td>
       </tr>
     {% empty %}
-      <tr><td colspan="3">Истории нет</td></tr>
+      <tr><td colspan="4">Истории нет</td></tr>
     {% endfor %}
   </tbody>
 </table>
