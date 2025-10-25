@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>{% if player %}Редактировать{% else %}Создать игрока{% endif %}</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button class="btn btn-primary" type="submit">Сохранить</button>
-  <a class="btn btn-secondary" href="{% url 'players_list' %}">Отмена</a>
-</form>
+<div class="player-form-container">
+  <h2>{% if player %}Редактировать{% else %}Создать игрока{% endif %}</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="btn-group">
+      <button class="btn btn-primary" type="submit">Сохранить</button>
+      <a class="btn btn-secondary" href="{% url 'players_list' %}">Отмена</a>
+    </div>
+  </form>
+</div>
 {% endblock %}

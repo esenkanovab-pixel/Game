@@ -7,13 +7,25 @@
 
 <h3 class="mt-4">Ответы</h3>
 <table class="table">
-  <thead><tr><th>Вопрос</th><th>Ответ игрока</th><th>Правильно?</th></tr></thead>
+  <thead>
+    <tr>
+      <th>Вопрос</th>
+      <th>Ответ игрока</th>
+      <th>Правильно?</th>
+    </tr>
+  </thead>
   <tbody>
     {% for r in session.results.all %}
     <tr>
       <td>{{ r.question.text }}</td>
       <td>{{ r.given_answer }}</td>
-      <td>{{ 'Да' if r.correct else 'Нет' }}</td>
+      <td>
+        {% if r.correct %}
+          Да
+        {% else %}
+          Нет
+        {% endif %}
+      </td>
     </tr>
     {% empty %}
     <tr><td colspan="3">Нет ответов</td></tr>
