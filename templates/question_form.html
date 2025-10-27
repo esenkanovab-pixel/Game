@@ -1,10 +1,39 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block content %}
-<h2>{% if question %}Редактировать{% else %}Создать вопрос{% endif %}</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button class="btn btn-primary" type="submit">Сохранить</button>
-  <a class="btn btn-secondary" href="{% url 'questions_list' %}">Отмена</a>
-</form>
+<div class="row justify-content-center">
+  <div class="col-md-6">
+
+    <div class="card shadow-sm">
+      <div class="card-header bg-primary text-white text-center">
+        {% if question %}Редактировать вопрос{% else %}Добавить вопрос{% endif %}
+      </div>
+      <div class="card-body">
+        <form method="post">
+          {% csrf_token %}
+          
+          <div class="mb-3">
+            <label for="id_text" class="form-label">Текст вопроса</label>
+            <input type="text" name="text" class="form-control" id="id_text"
+                   value="{{ question.text|default_if_none:'' }}" placeholder="Введите текст вопроса" required>
+          </div>
+          
+          <div class="mb-3">
+            <label for="id_correct_answer" class="form-label">Правильный ответ</label>
+            <input type="text" name="correct_answer" class="form-control" id="id_correct_answer"
+                   value="{{ question.correct_answer|default_if_none:'' }}" placeholder="Введите правильный ответ" required>
+          </div>
+
+          <div class="d-grid">
+            <button type="submit" class="btn btn-success btn-lg">
+              {% if question %}Сохранить изменения{% else %}Добавить вопрос{% endif %}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
 {% endblock %}
