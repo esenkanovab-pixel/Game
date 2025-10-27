@@ -1,10 +1,14 @@
 /* 🌈 Основной стиль приложения */
+/* Фон всей страницы */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f8f9fa;
+  background: linear-gradient(135deg, #f8f9fa, #e0e7ff);
   color: #333;
   margin-bottom: 50px;
+  min-height: 100vh;
+  background-attachment: fixed; /* для эффекта параллакса при скролле */
 }
+
 
 /* Навигация */
 .navbar {
